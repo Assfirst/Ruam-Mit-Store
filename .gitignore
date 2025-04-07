@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Database file
+database/mydatabase.db
+database/mydatabase.db-journal # ไฟล์ชั่วคราวของ SQLite
+
+# Environment variables (ถ้ามีในอนาคต)
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
