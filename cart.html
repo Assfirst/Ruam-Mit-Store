@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://www.iconpacks.net/icons/2/free-store-icon-2017-thumb.png">
+    <title>ตะกร้าสินค้า - ร้านค้าของเรา</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CDN -->
+</head>
+<body class="bg-gray-100">
+
+    <nav class="bg-white shadow mb-6 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="/dashboard" class="text-xl font-bold text-blue-600 hover:text-blue-800">รวมมิตรสโตร์</a>
+            <div>
+                <a href="/products" class="text-sm text-gray-600 hover:text-blue-600 mr-4">ดูสินค้า</a>
+                <a href="/logout" class="text-sm text-red-500 hover:text-red-700">ออกจากระบบ</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-6">ตะกร้าสินค้าของคุณ</h2>
+
+        <!-- === พื้นที่แสดงรายการสินค้าในตะกร้า === -->
+        <div id="cart-items-container" class="bg-white rounded shadow p-6 mb-6">
+            <!-- รายการสินค้าจะถูกใส่เข้ามาในนี้ด้วย JavaScript -->
+            <p id="loading-cart-message" class="text-gray-500">กำลังโหลดข้อมูลตะกร้า...</p>
+            <!-- ตัวอย่างโครงสร้างรายการ (เดี๋ยว JS สร้างจริง) -->
+            <!--
+            <div class="flex items-center border-b border-gray-200 py-4">
+                <img src="https://via.placeholder.com/80" alt="Product Name" class="w-20 h-20 object-cover rounded mr-4">
+                <div class="flex-grow">
+                    <h3 class="text-lg font-semibold">ชื่อสินค้า</h3>
+                    <p class="text-gray-600">ราคา: 350 บาท</p>
+                </div>
+                <div class="text-center mx-4">
+                    <label for="quantity-1" class="block text-sm font-medium text-gray-700 mb-1">จำนวน</label>
+                    <input type="number" id="quantity-1" value="1" min="1" class="w-16 border border-gray-300 rounded text-center">
+                </div>
+                <div class="text-right mx-4 min-w-[100px]">
+                    <p class="font-semibold">รวม: 350 บาท</p>
+                </div>
+                <button class="text-red-500 hover:text-red-700 ml-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                </button>
+            </div>
+            -->
+        </div>
+        <!-- ===================================== -->
+
+        <!-- === สรุปราคารวม และ ปุ่ม Checkout === -->
+        <div id="cart-summary" class="bg-white rounded shadow p-6 text-right">
+            <p class="text-xl font-semibold mb-4">
+                ราคารวมทั้งหมด: <span id="total-price" class="text-blue-600">0</span> บาท
+            </p>
+            <button id="checkout-button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline disabled:opacity-50" disabled>
+                ไปหน้าชำระเงิน
+            </button>
+            <!-- ปุ่มจะ enable เมื่อมีของในตะกร้า -->
+        </div>
+        <!-- ================================= -->
+
+    </div>
+
+    <!-- เรียกใช้ไฟล์ JavaScript (อาจจะใช้ script.js เดิม หรือสร้าง cart.js ใหม่) -->
+    <!-- ถ้าใช้ script.js เดิม ต้องระวังเรื่องการหา element ที่ไม่มีในหน้าอื่น -->
+    <!-- เราจะลองใช้ script.js เดิมไปก่อน แล้วเช็ค path เอา -->
+    <script src="/script.js"></script>
+</body>
+</html>

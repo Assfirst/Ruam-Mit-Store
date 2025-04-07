@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ - ร้านรวมมิตรสโตร์</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://www.iconpacks.net/icons/2/free-store-icon-2017-thumb.png">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- SweetAlert2 CDN (Optional, for consistency) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        /* Optional: เพิ่มสไตล์เล็กน้อยสำหรับ message area */
+        #message-area {
+            min-height: 1.5rem; /* จองพื้นที่ไว้เล็กน้อย กัน layout กระโดด */
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
+        <h1 class="text-2xl font-bold mb-6 text-center text-gray-700">เข้าสู่ระบบร้านค้า</h1>
+
+        <!-- พื้นที่แสดงข้อความ Success/Error -->
+        <div id="message-area" class="mb-4 text-center text-sm font-medium">
+            <!-- ข้อความจะถูกใส่ตรงนี้โดย JS -->
+        </div>
+
+        <!-- ฟอร์ม Login -->
+        <form action="/login" method="POST">
+            <div class="mb-4">
+                <label for="username" class="block text-gray-700 text-sm font-bold mb-2">
+                    ชื่อผู้ใช้ (Username)
+                </label>
+                <input type="text" id="username" name="username" required autofocus
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                       <!-- เพิ่ม autofocus ให้ cursor เริ่มที่ช่องนี้ -->
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">
+                    รหัสผ่าน (Password)
+                </label>
+                <input type="password" id="password" name="password" required
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <!-- (Optional) ลิงก์ลืมรหัสผ่าน -->
+                <!-- <a href="/forgot-password" class="text-xs text-blue-500 hover:text-blue-700">ลืมรหัสผ่าน?</a> -->
+            </div>
+            <div class="flex items-center justify-center mb-6">
+                <button type="submit"
+                        class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                    เข้าสู่ระบบ
+                </button>
+            </div>
+        </form>
+
+        <!-- ลิงก์ไปหน้าสมัครสมาชิก -->
+        <div class="text-center">
+            <a href="/register" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                ยังไม่มีบัญชี? สมัครสมาชิกที่นี่
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        // Script เล็กๆ สำหรับแสดงข้อความจาก Query Parameter
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const messageArea = document.getElementById('message-area');
+            const messageCode = urlParams.get('message');
+            const errorCode = urlParams.get('error');
+
+            if (messageArea) {
+                if (messageCode === 'RegistrationSuccessful') {
+                    messageArea.textContent = 'สมัครสมาชิกสำเร็จแล้ว! กรุณาเข้าสู่ระบบ';
+                    messageArea.className = 'mb-4 text-center text-sm font-medium text-green-600'; // สีเขียว
+                } else if (errorCode === 'InvalidCredentials') {
+                    messageArea.textContent = 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง!';
+                    messageArea.className = 'mb-4 text-center text-sm font-medium text-red-500'; // สีแดง
+                } else if (errorCode === 'MissingCredentials') {
+                     messageArea.textContent = 'กรุณากรอกชื่อผู้ใช้และรหัสผ่าน';
+                     messageArea.className = 'mb-4 text-center text-sm font-medium text-red-500';
+                } else if (errorCode === 'SessionExpired') {
+                     messageArea.textContent = 'Session หมดอายุ กรุณาเข้าสู่ระบบใหม่';
+                     messageArea.className = 'mb-4 text-center text-sm font-medium text-yellow-600';
+                } else if (errorCode === 'ServerError') {
+                     messageArea.textContent = 'เกิดข้อผิดพลาดในระบบ กรุณาลองใหม่อีกครั้ง';
+                     messageArea.className = 'mb-4 text-center text-sm font-medium text-red-500';
+                }
+                // อาจจะเพิ่ม error code อื่นๆ ตามที่ส่งมาจาก server.js
+            }
+
+            // ลบ query parameter ออกจาก URL หลังจากแสดงผลแล้ว
+            if (messageCode || errorCode) {
+                 const newUrl = window.location.pathname;
+                 window.history.replaceState({}, document.title, newUrl);
+            }
+        });
+    </script>
+</body>
+</html>

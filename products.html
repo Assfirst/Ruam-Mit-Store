@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://www.iconpacks.net/icons/2/free-store-icon-2017-thumb.png">
+    <title>รายการสินค้า - ร้านค้าของเรา</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CDN -->
+</head>
+<body class="bg-gray-100">
+
+    <nav class="bg-white shadow mb-6 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="/dashboard" class="text-xl font-bold text-blue-600 hover:text-blue-800">รวมมิตรสโตร์</a>
+            <div>
+                <!-- ไอคอนตะกร้า -->
+                <a href="/cart" id="nav-cart-link" class="relative inline-block mr-4 text-gray-600 hover:text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span id="nav-cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full transform translate-x-1/2 -translate-y-1/2" style="display: none;">0</span> <!-- เริ่มต้นซ่อนไว้ก็ได้ -->
+                </a>
+                <!-- จบส่วนไอคอนตะกร้า -->
+                <a href="/logout" class="text-sm text-red-500 hover:text-red-700">ออกจากระบบ</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4">
+        <h2 class="text-2xl font-bold mb-4">สินค้าทั้งหมด</h2>
+
+        <!-- === พื้นที่แสดงรายการสินค้า === -->
+        <!-- !!! สำคัญมาก: ตรวจสอบ ID ตรงนี้ให้ดี !!! -->
+        <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- สินค้าจะถูกใส่เข้ามาในนี้ด้วย JavaScript -->
+            <!-- อาจจะมี loading message เริ่มต้น หรือไม่มีก็ได้ script.js ควรจัดการได้ -->
+             <p id="loading-message" class="text-gray-500 col-span-full text-center py-8">กำลังโหลดสินค้า...</p>
+        </div>
+        <!-- ============================ -->
+
+    </div>
+
+    <!-- เรียกใช้ไฟล์ JavaScript (ควรอยู่ท้าย body) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://www.iconpacks.net/icons/2/free-store-icon-2017-thumb.png">
+    <title>สมัครสมาชิก - ร้านรวมมิตรสโตร์</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <!-- (Optional) SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6 text-center">สมัครสมาชิกใหม่</h1>
+
+        <!-- แสดงข้อความ Error (ถ้ามี) -->
+        <div id="error-message" class="mb-4 text-red-500 text-sm text-center"></div>
+
+        <form id="register-form" action="/register" method="POST">
+            <div class="mb-4">
+                <label for="username" class="block text-gray-700 text-sm font-bold mb-2">ชื่อผู้ใช้ (Username)</label>
+                <input type="text" id="username" name="username" required
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">อีเมล (Email)</label>
+                <input type="email" id="email" name="email" required
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">รหัสผ่าน (Password)</label>
+                <input type="password" id="password" name="password" required minlength="6"
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                 <p class="text-xs text-gray-500 mt-1">อย่างน้อย 6 ตัวอักษร</p>
+            </div>
+            <div class="mb-6">
+                <label for="confirmPassword" class="block text-gray-700 text-sm font-bold mb-2">ยืนยันรหัสผ่าน</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6"
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="flex items-center justify-between">
+                <button type="submit"
+                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    สมัครสมาชิก
+                </button>
+                <a href="/" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                    มีบัญชีแล้ว? เข้าสู่ระบบ
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- (Optional) ใส่ script.js ถ้าต้องการทำ validation ฝั่ง client เพิ่ม -->
+    <!-- <script src="/script.js"></script> -->
+     <script>
+        // Client-side validation ง่ายๆ
+        const form = document.getElementById('register-form');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const errorMessageDiv = document.getElementById('error-message');
+
+        form.addEventListener('submit', function(event) {
+            errorMessageDiv.textContent = ''; // เคลียร์ error เก่า
+            if (password.value !== confirmPassword.value) {
+                event.preventDefault(); // หยุดการ submit form
+                errorMessageDiv.textContent = 'รหัสผ่านและการยืนยันรหัสผ่านไม่ตรงกัน!';
+                confirmPassword.focus();
+            }
+            // อาจจะเพิ่มเช็คความยาว หรืออื่นๆ ตรงนี้ได้อีก
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://www.iconpacks.net/icons/2/free-store-icon-2017-thumb.png">
+    <title>ยืนยันการสั่งซื้อ - ร้านค้าของเรา</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <nav class="bg-white shadow mb-6 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="/dashboard" class="text-xl font-bold text-blue-600 hover:text-blue-800">รวมมิตรสโตร์</a>
+            <div>
+                <a href="/products" class="text-sm text-gray-600 hover:text-blue-600 mr-4">ดูสินค้า</a>
+                <a href="/cart" class="text-sm text-gray-600 hover:text-blue-600 mr-4">กลับไปตะกร้า</a>
+                <a href="/logout" class="text-sm text-red-500 hover:text-red-700">ออกจากระบบ</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-6">ยืนยันการสั่งซื้อ</h2>
+
+        <div class="bg-white rounded shadow p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4 border-b pb-2">สรุปรายการสินค้า</h3>
+            <!-- รายการสินค้าจะถูกใส่เข้ามาในนี้ด้วย JavaScript -->
+            <div id="checkout-item-list">
+                <p id="loading-checkout-message" class="text-gray-500">กำลังโหลดสรุปรายการ...</p>
+            </div>
+            <div class="border-t pt-4 mt-4 text-right">
+                <p class="text-xl font-semibold">
+                    ยอดรวมที่ต้องชำระ: <span id="checkout-total-price" class="text-blue-600">0</span> บาท
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center">
+             <button id="confirm-order-button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-8 rounded text-lg focus:outline-none focus:shadow-outline disabled:opacity-50" disabled>
+                ยืนยันการสั่งซื้อ
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/script.js"></script>
+</body>
+</html>
